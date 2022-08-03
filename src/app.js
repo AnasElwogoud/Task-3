@@ -1,19 +1,15 @@
 const express = require("express");
 const userRouter = require("./routers/user");
+const newsRouter = require("./routers/news");
 const app = express();
-const bcryptjs = require("bcryptjs");
+require("dotenv").config();
 const port = process.env.PORT || 3000;
 require("./db/mongoose");
 
 app.use(express.json());
 app.use(userRouter);
-
-// const pswFunction = async () => {
-//   const password = "R123456";
-//   const hashedPw = await bcryptjs.hash(password, 8);
-// };
-// pswFunction();
+app.use(newsRouter);
 
 app.listen(port, () => {
-  console.log(`Server Is Running in ${port}`);
+  console.log(`Server is running in port:${port}`);
 });
